@@ -1,3 +1,4 @@
+import 'package:course_selling/main.dart';
 import 'package:course_selling/pages/welcome/bloc/welcome_blocs.dart';
 import 'package:course_selling/pages/welcome/bloc/welcome_events.dart';
 import 'package:course_selling/pages/welcome/bloc/welcome_states.dart';
@@ -14,6 +15,7 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
+  PageController _pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,6 +28,7 @@ class _WelcomeState extends State<Welcome> {
               alignment: Alignment.topCenter,
               children: [
                 PageView(
+                  controller: _pageController,
                   onPageChanged: (index) => {
                     state.page = index,
                     BlocProvider.of<WelcomeBloc>(context).add(WelcomeEvents())
@@ -105,30 +108,42 @@ class _WelcomeState extends State<Welcome> {
                 fontWeight: FontWeight.normal),
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
-          width: 325.w,
-          height: 50.h,
-          decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.all(
-                Radius.circular(15.w),
-              ),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 10,
-                    blurRadius: 20,
-                    offset: Offset(0, 1))
-              ]),
-          child: Center(
-              child: Text(
-            buttonName,
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.normal),
-          )),
+        GestureDetector(
+          onTap: () {
+            if (index < 3) {
+              _pageController.animateToPage(index,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.decelerate);
+            } else {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: ((context) => MyHomePage(title: title))));
+            }
+          },
+          child: Container(
+            margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
+            width: 325.w,
+            height: 50.h,
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15.w),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 10,
+                      blurRadius: 20,
+                      offset: Offset(0, 1))
+                ]),
+            child: Center(
+                child: Text(
+              buttonName,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.normal),
+            )),
+          ),
         )
       ],
     );
