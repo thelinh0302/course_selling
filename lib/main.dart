@@ -1,3 +1,4 @@
+import 'package:course_selling/pages/sign_in/sign_in.dart';
 import 'package:course_selling/pages/welcome/bloc/welcome_blocs.dart';
 import 'package:course_selling/pages/welcome/welcome.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +25,14 @@ class MyApp extends StatelessWidget {
       child: ScreenUtilInit(
         builder: (builder, context) => MaterialApp(
           debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            appBarTheme:
+                const AppBarTheme(elevation: 0, backgroundColor: Colors.white),
+          ),
           home: Welcome(),
           routes: {
-            "/myHomePage": (context) => const MyHomePage(title: "My home page")
+            "/myHomePage": (context) => const MyHomePage(title: "My home page"),
+            "/signIn": (context) => const SignIn(),
           },
         ),
       ),
