@@ -22,9 +22,12 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: ScreenUtilInit(
-        builder: (builder, context) => const MaterialApp(
+        builder: (builder, context) => MaterialApp(
           debugShowCheckedModeBanner: false,
           home: Welcome(),
+          routes: {
+            "/myHomePage": (context) => const MyHomePage(title: "My home page")
+          },
         ),
       ),
     );

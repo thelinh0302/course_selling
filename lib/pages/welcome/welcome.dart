@@ -115,8 +115,8 @@ class _WelcomeState extends State<Welcome> {
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.decelerate);
             } else {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: ((context) => MyHomePage(title: title))));
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil("/myHomePage", (route) => false);
             }
           },
           child: Container(
