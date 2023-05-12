@@ -1,3 +1,4 @@
+import 'package:course_selling/common/widgets/common_widget.dart';
 import 'package:course_selling/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:course_selling/pages/sign_in/bloc/sign_in_events.dart';
 import 'package:course_selling/pages/sign_in/bloc/sign_in_states.dart';
@@ -23,7 +24,7 @@ class _SignInState extends State<SignIn> {
         child: SafeArea(
           child: Scaffold(
             backgroundColor: Colors.white,
-            appBar: buildAppBar(),
+            appBar: buildAppBar("Log In"),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,11 +55,16 @@ class _SignInState extends State<SignIn> {
                         forgotPassword(),
                         buildLoginAndRegisterButton(
                             "Login",
+                            "login",
                             () => {
                                   SignInController(context: context)
                                       .handleSignIn('email')
                                 }),
-                        buildLoginAndRegisterButton("Register", () => {}),
+                        buildLoginAndRegisterButton(
+                            "Register",
+                            "register",
+                            () =>
+                                {Navigator.of(context).pushNamed("/register")}),
                       ],
                     ),
                   )

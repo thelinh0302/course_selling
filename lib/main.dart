@@ -1,4 +1,5 @@
 import 'package:course_selling/pages/bloc_provider.dart';
+import 'package:course_selling/pages/register/register.dart';
 import 'package:course_selling/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:course_selling/pages/sign_in/sign_in.dart';
 import 'package:course_selling/pages/welcome/bloc/welcome_blocs.dart';
@@ -26,13 +27,16 @@ class MyApp extends StatelessWidget {
         builder: (builder, context) => MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            appBarTheme:
-                const AppBarTheme(elevation: 0, backgroundColor: Colors.white),
+            appBarTheme: const AppBarTheme(
+                iconTheme: IconThemeData(color: Colors.black),
+                elevation: 0,
+                backgroundColor: Colors.white),
           ),
           home: Welcome(),
           routes: {
             "/myHomePage": (context) => const MyHomePage(title: "My home page"),
             "/signIn": (context) => const SignIn(),
+            "/register": (context) => const Register(),
           },
         ),
       ),
